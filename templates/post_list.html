@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}Postlar{% endblock %}
+{% block content %}
+<h2 class="mb-3">📄 Postlar</h2>
+<a href="/posts/create/" class="btn btn-success mb-3">+ Yangi</a>
+
+{% if posts %}
+<div class="row">
+{% for post in posts %}
+<div class="col-md-6 mb-3">
+    <div class="card">
+        <div class="card-body">
+            <h5>{{ post.title }}</h5>
+            <p class="text-muted small">{{ post.content|truncatechars:100 }}</p>
+            <small>👤 {{ post.author }}</small>
+            <a href="{% url 'post_detail' post.id %}" class="btn btn-sm btn-primary float-end">Ko'rish</a>
+        </div>
+    </div>
+</div>
+{% endfor %}
+</div>
+{% else %}
+<p class="text-center text-muted py-4">📭 Postlar yo'q</p>
+{% endif %}
+{% endblock %}
